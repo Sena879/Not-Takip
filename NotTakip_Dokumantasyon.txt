@@ -1,0 +1,98 @@
+NOT TAKİP UYGULAMASI - DÖKÜMANTASYON
+Hazırlayan: Umut Y.
+Tarih: 2025-05-12
+
+------------------------------------------------------------
+GENEL BİLGİLER
+------------------------------------------------------------
+
+Bu uygulama, bir öğretim görevlisinin öğrenci notlarını takip edebilmesi amacıyla C# dili ve MSSQL veritabanı kullanılarak geliştirilmiştir.
+
+Veritabanı Adı: NotTakip
+Sunucu Adı: MONSTER\SQLEXPRESS
+
+------------------------------------------------------------
+VERİTABANI TABLOLARI
+------------------------------------------------------------
+
+1. Ogrenciler
+- OgrenciID (int, PK)
+- AdSoyad (nvarchar)
+- Numara (nvarchar)
+- Sifre (nvarchar)
+
+2. Dersler
+- DersID (int, PK)
+- DersAdi (nvarchar)
+- DersKodu (nvarchar)
+- OgretimElemani (nvarchar)
+
+3. Notlar
+- NotID (int, PK)
+- OgrenciID (int, FK)
+- DersID (int, FK)
+- Vize (float)
+- Final (float)
+- Ortalama (float) -- Hesaplanan sütun (Computed Column)
+
+------------------------------------------------------------
+KULLANILAN SINIFLAR
+------------------------------------------------------------
+
+- DatabaseHelper.cs:
+  SQL bağlantı ve sorgu yürütme işlemlerini yapan yardımcı sınıftır.
+  Metotlar:
+    - ExecuteQuery(string query, SqlParameter[] parameters = null)
+    - ExecuteNonQuery(string query, SqlParameter[] parameters = null)
+
+------------------------------------------------------------
+NOT EKLEME (INSERT)
+------------------------------------------------------------
+
+Not eklerken ortalama değeri veritabanında otomatik olarak hesaplanmaktadır.
+Aşağıdaki sorgu çalıştırılır:
+
+INSERT INTO Notlar (OgrenciID, DersID, Vize, Final)
+VALUES (@ogrenciID, @dersID, @vize, @final)
+
+@ortalama parametresi gönderilmez, çünkü Ortalama sütunu hesaplanmıştır (computed).
+
+------------------------------------------------------------
+NOT GÜNCELLEME (UPDATE)
+------------------------------------------------------------
+
+Seçilen bir not kaydının Vize ve Final değerleri güncellenebilir. Ortalama yine otomatik hesaplanır.
+
+UPDATE Notlar SET
+  OgrenciID = @ogr,
+  DersID = @ders,
+  Vize = @vize,
+  Final = @final
+WHERE NotID = @id
+
+------------------------------------------------------------
+NOT GÖRÜNTÜLEME (LISTBOX)
+------------------------------------------------------------
+
+Veriler DataGridView yerine düzenli biçimde ListBox içinde gösterilebilir.
+
+ListBox.Items.Add(string.Format("Ogrenci: 0 | Ders: 1 | Vize: 2 | Final: 3 | Ortalama: 4", ogrenciAd, dersAd, vize, final, ortalama))
+
+------------------------------------------------------------
+HATA MESAJLARI VE ÇÖZÜMLERİ
+------------------------------------------------------------
+
+1. Ortalama sütunu güncellenemez:
+   - Ortalama, computed column olduğundan INSERT veya UPDATE sorgularında yer almamalıdır.
+
+2. Must declare the scalar variable "@ogrenciID":
+   - SQL sorgusunda kullanılan parametre eksik tanımlanmışsa bu hata alınır.
+   - Parametre listesi sorgudaki isimlerle birebir uyumlu olmalıdır.
+
+------------------------------------------------------------
+İPUÇLARI
+------------------------------------------------------------
+
+- Veritabanı ilişkilerine dikkat edilmelidir (FK tanımları).
+- Ortalama formülü: (Vize * 0.4 + Final * 0.6)
+- Ortalama sütunu SQL tarafında otomatik hesaplanmalıdır (computed column).

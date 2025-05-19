@@ -1,0 +1,15 @@
+C:\Users\umuty\source\repos\NotTakip\NotTakip\bin\Debug\NotTakip.exe.config
+C:\Users\umuty\source\repos\NotTakip\NotTakip\bin\Debug\NotTakip.exe
+C:\Users\umuty\source\repos\NotTakip\NotTakip\bin\Debug\NotTakip.pdb
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.csproj.AssemblyReference.cache
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.Properties.Resources.resources
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.csproj.GenerateResource.cache
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.csproj.CoreCompileInputs.cache
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.exe
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.pdb
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.OgrenciYonetimPaneli.resources
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.YonetimPanel.resources
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.DersEkleYonet.resources
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.GirisEkran.resources
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.NotEkleYonet.resources
+C:\Users\umuty\source\repos\NotTakip\NotTakip\obj\Debug\NotTakip.OgrenciPanel.resources
